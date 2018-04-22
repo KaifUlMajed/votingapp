@@ -1,0 +1,23 @@
+<%- include partials/header -%>
+
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Welcome to your dashboard, <%= user %>!</h1>
+      <p class="lead">Here you can view polls created by the community and vote on them. You may also create your own polls for the community to vote on!</p>
+      <hr class="my-4">
+      <div class="btn-group">
+        <a class="btn btn-success" href="/createpoll">Create Poll</a>
+        <!-- <a class="btn btn-primary" href="/viewpolls">View Polls</a>     -->
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            View Polls <span class="caret"></span>
+        </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a  href="/viewmypolls">Your Polls</a></li>
+              <li><a  href="/viewpolls">All Polls</a></li>
+            </ul>
+    </div>
+    </div>
+  </div>
+
+<%- include partials/footer -%>

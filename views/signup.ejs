@@ -1,0 +1,17 @@
+<%- include partials/header -%>
+
+    <form action="/signup" method="POST">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+<p>Registration status: <%= status %></p>
+<p>Registration Complete? Click here to login in</p>
+<a href="/login" class="btn btn-success">Login</a>
+<%- include partials/footer -%>

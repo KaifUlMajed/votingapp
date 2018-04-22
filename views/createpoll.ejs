@@ -1,0 +1,49 @@
+<%- include partials/header -%>
+
+<h1>Create Poll</h1>
+<form id="createpollform" action="/createpoll" method="POST">
+  <div class="form-group">
+    <label for="question">Enter your question</label>
+    <input type="text" class="form-control" name="question" id="question" placeholder="Type your question">
+  </div>
+  <div class="form-group">
+    <label for="options">Options</label>
+    <ul id="optionsList">
+        <li><input type="text" name="options" class="form-control" placeholder="Option"></li>
+        <li><input type="text" name="options" class="form-control" placeholder="Option"></li>
+    </ul>
+    <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" id="addOption" class="btn btn-secondary">Add Option</button>
+            <button type="button" id="deleteOption" class="btn btn-secondary">Delete Option</button>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+<p>Poll Creation Status: <%= status %> </p>
+<div>
+  <a class="btn btn-primary" href="/viewpolls">View Polls</a>
+  <a class="btn btn-primary" href="/dashboard">Dashboard</a>
+</div>  
+<script>
+   let addButton = document.getElementById('addOption');
+   addButton.addEventListener('click', (event)=>{
+       event.preventDefault();
+       let optionsList = document.getElementById('optionsList');
+       let newListItem = document.createElement('li');
+       let optionInput = document.createElement('input');
+       optionInput.setAttribute('type', 'text');
+       optionInput.setAttribute('name', 'options');
+       optionInput.setAttribute('class', 'form-control');
+       optionInput.setAttribute('placeholder', 'Option');
+       newListItem.appendChild(optionInput);
+       optionsList.appendChild(newListItem);
+    });   
+    
+    let deleteButton = document.getElementById('deleteOption');
+    deleteButton.addEventListener('click', (event)=>{
+        event.preventDefault();
+        var list = document.getElementById("optionsList");
+        list.removeChild(list.childNodes[list.childNodes.length-1]); 
+    });
+</script>
+<%- include partials/footer -%>
