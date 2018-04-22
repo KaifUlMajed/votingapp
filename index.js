@@ -144,7 +144,7 @@ app.get('/viewmypolls', (req, res) => {
             })
         }
         else {
-            res.render('viewpolls', {
+            res.render('viewmypolls', {
                 title: 'Voting App - View Polls',
                 user: (typeof req.session.user == 'undefined') ? '' : req.session.user,
                 polls: polls
@@ -220,6 +220,29 @@ app.get('/getPollResult', (req, res) => {
         })
         res.writeHead(200, { "Content-Type": 'text/plain' });
         res.end(JSON.stringify(results));
+    })
+})
+
+app.get('/deletepoll', (req, res)=>{
+    let pollID = req.param('pollID');
+    let owner = req.session.user;
+    db.deletePoll(pollID, (result)=>{
+        db.viewMyPolls(owner, (polls) => {
+            if (!polls) {
+                res.render('dashboard', {
+                    title: 'Voting App - Dashboard',
+                    user: (typeof req.session.user == 'undefined') ? '' : req.session.user,
+                    polls: []
+                })
+            }
+            else {
+                res.render('viewmypolls', {
+                    title: 'Voting App - View Polls',
+                    user: (typeof req.session.user == 'undefined') ? '' : req.session.user,
+                    polls: polls
+                });
+            }
+        })
     })
 })
 

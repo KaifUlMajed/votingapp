@@ -1,0 +1,49 @@
+<%- include partials/header -%>
+
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Question</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% polls.forEach(function(poll){ %>
+                        <tr>
+                            
+                                <th scope="row">
+                                    <%= polls.indexOf(poll)+1  %>
+                                </th>
+                                <td>
+                                    <%= poll.question %>
+                                </td>
+                                <td><form action="/votepoll" method="GET">
+                                    <input type="text" name="pollID" hidden="true" value= <%= poll._id %> >  
+                                    <button type="submit" class="btn btn-info">View</button>
+                                    </form>
+                                    <form action="/deletepoll" method="GET">
+                                    <input type="text" name="pollID" hidden="true" value= <%= poll._id %> >  
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                        </tr>
+
+                        <% }) %>
+
+                </tbody>
+            </table>
+            <% if (polls.length == 0){ %>
+            <div class="container">
+                <p>There seems to be no active polls at the moment...</p>
+                <a href="/createpoll" class="btn btn-success">Create a poll</a>
+            </div>
+            <% } %>
+
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+        </div>
+    </div>
+
+    <%- include partials/footer -%>

@@ -97,7 +97,17 @@ function voteOnPoll(voter, id, answer, callback){
     })
 }
 
-//db.poll.update({_id: ObjectId("5ad88699abd50c07b84add41")}, {$inc:{'options.No':1}})
+function deletePoll(id, callback){
+    db.poll.remove({_id: ObjectId(id)}, (err, result)=>{
+        if (err){
+            console.log(err);
+            callback(false);
+        }
+        else{
+            callback(true);
+        }
+    })
+}
 
 
 module.exports.insert = insertUser;
@@ -107,3 +117,4 @@ module.exports.viewPolls = viewPolls;
 module.exports.findPoll = findPoll;
 module.exports.voteOnPoll = voteOnPoll;
 module.exports.viewMyPolls = viewMyPolls;
+module.exports.deletePoll = deletePoll;
