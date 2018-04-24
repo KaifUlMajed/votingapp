@@ -1,6 +1,6 @@
 const mongojs = require('mongojs');
 var ObjectId = mongojs.ObjectId;
-const db = mongojs('votingapp',['users', 'poll']);
+const db = mongojs('mongodb://root:root@ds255329.mlab.com:55329/votingapp',['users', 'poll']);
 
 
 function insertUser (email, password, callback){
