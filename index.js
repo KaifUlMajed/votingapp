@@ -1,5 +1,6 @@
 // Module imports
 const express = require('express');
+const PORT = process.env.PORT || 5000;
 const db = require('./public/js/dbutils.js');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -254,4 +255,4 @@ app.get('/logout', (req, res) => {
 })
 
 
-app.listen(8008);
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
